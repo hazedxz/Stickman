@@ -1,4 +1,3 @@
-# core/cleanup.py
 import os, subprocess, threading, tempfile
 
 def _human(b):
