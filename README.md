@@ -1,4 +1,4 @@
-﻿# 🟡 Stickman Desktop Pet
+﻿# 🟡 Stickman Desktop Pet versión Beta
 
 Interactive desktop mascot inspired by the style of the video, made 100% with Python and PyQt5.
 
