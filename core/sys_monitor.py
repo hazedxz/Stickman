@@ -1,4 +1,3 @@
-# core/sys_monitor.py
 import psutil, threading
 
 class SysMonitor:
