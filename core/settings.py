@@ -1,4 +1,3 @@
-# core/settings.py
 import json, os, copy
 from core.constants import DEFAULT_TEXTS
 
