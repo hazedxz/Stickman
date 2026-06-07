@@ -1,4 +1,3 @@
-# core/win_monitor.py
 import ctypes, ctypes.wintypes
 
 user32  = ctypes.windll.user32
@@ -57,7 +56,7 @@ class WindowMonitor:
         self._prev_hwnd        = None
 
     def poll(self):
-        # Refresh taskbar (user may resize it)
+        
         tb = _taskbar_rect()
         self.taskbar_top = float(tb.top)
         self.taskbar_h   = float(tb.bottom - tb.top)
@@ -74,13 +73,13 @@ class WindowMonitor:
         win_w = rect.right  - rect.left
         win_h = rect.bottom - rect.top
 
-        # Fullscreen = covers entire primary screen
+        
         self.fullscreen_active = (
             rect.left <= 0 and rect.top <= 0 and
             rect.right >= self.scr_w and rect.bottom >= self.scr_h
         )
 
-        # Window moved?
+        
         if self._prev_hwnd == hwnd and self._prev_rect:
             p = self._prev_rect
             self.window_moved = (p.left != rect.left or p.top != rect.top)
@@ -90,14 +89,14 @@ class WindowMonitor:
         self._prev_rect = rect
 
         if self.fullscreen_active:
-            # Retreat to taskbar
+            
             self.floor_y  = self.taskbar_top
             self.target_x = self.taskbar_cx
         elif win_w > 0 and win_h > 0:
-            # Sit on TOP edge of window.
-            # 48 = head(20) + torso(28) clearance so feet touch the edge
+            
+            
             raw = float(rect.top) - 48.0
-            # Clamp between top of screen and top of taskbar
+            
             self.floor_y  = max(40.0, min(self.taskbar_top, raw))
             self.target_x = float(rect.left + win_w // 2)
         else:
