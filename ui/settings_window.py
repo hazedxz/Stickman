@@ -1,4 +1,3 @@
-# ui/settings_window.py
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QTabWidget, QLabel,
     QTextEdit, QPushButton, QCheckBox, QSlider, QGroupBox,
@@ -79,7 +78,7 @@ class SettingsWindow(QWidget):
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
 
-        # Title bar
+        
         bar = QFrame()
         bar.setFixedHeight(46)
         bar.setStyleSheet(f"background:{BG2}; border-bottom:1px solid #2e2e2e;")
@@ -90,7 +89,7 @@ class SettingsWindow(QWidget):
         bl.addWidget(lbl)
         root.addWidget(bar)
 
-        # Tabs
+       
         self._tabs = QTabWidget()
         self._tabs.addTab(self._tab_texts(),    "Texts")
         self._tabs.addTab(self._tab_behavior(), "Behavior")
@@ -98,7 +97,7 @@ class SettingsWindow(QWidget):
         self._tabs.addTab(self._tab_about(),    "About")
         root.addWidget(self._tabs)
 
-        # Footer
+        
         foot = QFrame()
         foot.setFixedHeight(52)
         foot.setStyleSheet(f"background:{BG2}; border-top:1px solid #2e2e2e;")
@@ -114,7 +113,7 @@ class SettingsWindow(QWidget):
 
         self._edits = {}
 
-    # ── TEXTS TAB ────────────────────────────────────────────
+    
     def _tab_texts(self):
         scroll = QScrollArea(); scroll.setWidgetResizable(True)
         w = QWidget(); lay = QVBoxLayout(w)
@@ -141,7 +140,7 @@ class SettingsWindow(QWidget):
         scroll.setWidget(w)
         return scroll
 
-    # ── BEHAVIOR TAB ─────────────────────────────────────────
+    
     def _tab_behavior(self):
         w = QWidget(); lay = QVBoxLayout(w)
         lay.setContentsMargins(18,18,18,18); lay.setSpacing(14)
@@ -160,7 +159,7 @@ class SettingsWindow(QWidget):
             c.stateChanged.connect(lambda v, k=key: cfg.set(k, bool(v)))
             self._chk[key] = c; lay.addWidget(c)
 
-        # Threshold spinboxes
+        
         grp = QGroupBox("Thresholds"); gl = QVBoxLayout(grp)
         for key, label, lo, hi in [
             ("cpu_warn_pct",   "CPU sweat starts (%)", 10, 95),
@@ -180,7 +179,7 @@ class SettingsWindow(QWidget):
         lay.addStretch()
         return w
 
-    # ── ACTIONS TAB ──────────────────────────────────────────
+    
     def _tab_actions(self):
         w = QWidget(); lay = QVBoxLayout(w)
         lay.setContentsMargins(18,18,18,18); lay.setSpacing(12)
@@ -198,7 +197,7 @@ class SettingsWindow(QWidget):
         lay.addStretch()
         return w
 
-    # ── ABOUT TAB ────────────────────────────────────────────
+    
     def _tab_about(self):
         w = QWidget(); lay = QVBoxLayout(w)
         lay.setContentsMargins(24,24,24,24); lay.setSpacing(8)
@@ -218,7 +217,7 @@ class SettingsWindow(QWidget):
         lay.addStretch()
         return w
 
-    # ── SAVE / RESET ─────────────────────────────────────────
+    
     def _save(self):
         for k, te in self._edits.items():
             lines = [l.strip() for l in te.toPlainText().splitlines() if l.strip()]
